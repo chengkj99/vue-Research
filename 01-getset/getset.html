@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="test">
+      <p>{{msg}}</p>
+      <p>{{msg}}</p>
+      <p>{{msg}}</p>
+      <p>{{what}}</p>
+      <p>{{hey}}</p>
+    </div>
+    <script type="text/javascript">
+    debugger;
+      var bindingMark = 'data-element-binding'
+      function Element (id, initData) {
+        var self = this,
+          el = self.el = document.getElementById(id)
+          bindings = {}
+          data = self.data = {}
+          content = el.innerHTML.replace(/\{\{(.*)\}\}/g, markToken)
+
+          el.innerHTML = content
+
+          for (var variable in bindings) {
+            bind(variable)
+          }
+
+          // 初始化数据： 将传进来的值赋给当前环境
+          if (initData) {
+            for (var variable in initData) {
+              data[variable] = initData[variable]
+            }
+          }
+
+          // 做标记： 1. {{}} 替换为该 dom; 2. bindings[variable] = {}
+          // 第一个参数match，表示与正则表达式匹配的全文本。
+          // 第二个参数match，表示为子表达式匹配的字符串。
+          function markToken (match, variable) {
+            bindings[variable] = {}
+            return `<span ${bindingMark} = ${variable} ></span>`
+          }
+
+          function bind (variable) {
+            // 选择 自定义的属性bindingMark， 并移除
+            bindings[variable].els = el.querySelectorAll(`[${bindingMark} = ${variable}]`);
+            [].forEach.call(bindings[variable].els, e => {
+              e.removeAttribute(bindingMark)
+            })
+            // bindings[variable].els.forEach(e => {
+            //   e.removeAttribute(bindingMark)
+            // })
+
+            Object.defineProperty(data, variable, {
+              set: function (newVal) {
+                [].forEach.call(bindings[variable].els, e => {
+                  bindings[variable].value = e.textContent = newVal
+                })
+              },
+              get: function() {
+                return bindings[variable].value
+              }
+            })
+          }
+      }
+
+      var app = new Element('test', {
+        msg: 'hello'
+      })
+    </script>
+  </body>
+</html>

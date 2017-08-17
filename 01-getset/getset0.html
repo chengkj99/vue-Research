@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="test">
+      <p>{{msg}}</p>
+      <p>{{msg}}</p>
+      <p>{{msg}}</p>
+      <p>{{what}}</p>
+      <p>{{hey}}</p>
+    </div>
+    <script type="text/javascript">
+      function Vue (id, initData) {
+        var bindMark = 'bind-mark'
+        var self = this,
+          el = self.el = document.getElementById('test')
+          data = self.data = {}
+          bindings = {}
+          content = el.innerHTML.replace(/\{\{(.*)\}\}/g, markToken)
+
+          el.innerHTML = content
+
+
+          for (var variable in bindings) {
+            bind(variable)
+          }
+
+          for (var variable in initData) {
+            data[variable] = initData[variable]
+          }
+
+          function markToken (match, variable) {
+            bindings[variable] = {}
+            return `<span ${bindMark} = ${variable}></span>`
+          }
+
+          function bind (variable) {
+            bindings[variable].els = document.querySelectorAll(`[${bindMark} = ${variable}]`);
+            [].forEach.call(bindings[variable].els, e => {
+              e.removeAttribute(bindMark)
+            })
+
+            Object.defineProperty(data, variable, {
+              get () {
+                return bindings[variable].value
+              },
+              set (newValue) {
+                [].forEach.call(bindings[variable].els, e => {
+                  bindings[variable].value = e.textContent = newValue
+                })
+              }
+            })
+          }
+      }
+
+      var v = new Vue('test', {
+        msg: 'hahahaha'
+      })
+    </script>
+  </body>
+</html>
