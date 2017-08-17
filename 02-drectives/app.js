@@ -1,13 +1,15 @@
-import Seed from './main.js'
+import Seed from './src/main.js'
 
-var app = Seed.create({
-    id: 'test',
-    // template
-    scope: {
-        msg: 'hello',
-        hello: 'WHWHWHW',
-        changeMessage: function () {
-            app.scope.msg = 'hola'
-        }
-    }
-})
+ (function(){
+   var app = Seed.create({
+       id: 'test',
+       // template
+       scope: {
+           msg: 'hello',
+           hello: 'WHWHWHW',
+           changeMessage: function () {
+               app.scope.msg = 'hola'
+           }
+       }
+   })
+ })()

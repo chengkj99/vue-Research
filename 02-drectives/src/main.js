@@ -1,14 +1,12 @@
 var prefix      = 'sd'
-debugger;
 import Directives from './directives'
 import Filters from './filters'
-
+debugger;
 var selector    = Object.keys(Directives).map(function (d) {
     return '[' + prefix + '-' + d + ']'
 }).join()
 
 function Seed (opts) {
-  debugger;
     var self = this,
         root = this.el = document.getElementById(opts.id),
         els  = root.querySelectorAll(selector),
@@ -98,11 +96,11 @@ function parseDirective (attr) {
         argIndex = noprefix.indexOf('-'),
         dirname  = argIndex === -1
             ? noprefix
-            : noprefix.slice(0, argIndex),
+            : noprefix.slice(0, argIndex), // 这个干嘛用呢
         def = Directives[dirname],
         arg = argIndex === -1
             ? null
-            : noprefix.slice(argIndex + 1)
+            : noprefix.slice(argIndex + 1) //获取 “-” 后面的内容
 
     // parse scope variable key and pipe filters
     var exp = attr.value,

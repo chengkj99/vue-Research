@@ -14,7 +14,7 @@ module.exports = {
     filename: "bundle.js", // string
     // the filename template for entry chunks
   },
-
+  devtool :"#source-map",
   module: {
     rules: [
       {
