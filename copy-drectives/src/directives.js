@@ -31,7 +31,7 @@ export default {
         customFilter: function (handler, selectors) {
             return function (e) {
                 var match = selectors.every(function (selector) {
-                    return e.target.webkitMatchesSelector(selector) //常常用于事件委托、判断当前DOM节点是否能完全匹配对应的CSS选择器规则，匹配成功返回true
+                    return e.target.webkitMatchesSelector(selector) //匹配一个字符串，匹配成功返回true
                 })
                 if (match) handler.apply(this, arguments)
             }

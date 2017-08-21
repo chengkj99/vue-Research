@@ -45,8 +45,8 @@
 
           function bind (variable) {
             // 选择 自定义的属性bindingMark， 并移除
-            bindings[variable].els = el.querySelectorAll(`[${bindingMark} = ${variable}]`);
-            [].forEach.call(bindings[variable].els, e => {
+            bindings[variable].els = el.querySelectorAll(`[${bindingMark} = ${variable}]`)
+            ;[].forEach.call(bindings[variable].els, e => {
               e.removeAttribute(bindingMark)
             })
             // bindings[variable].els.forEach(e => {
