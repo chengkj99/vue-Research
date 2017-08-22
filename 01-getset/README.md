@@ -7,7 +7,7 @@
 
 vue让我专注于业务，提升了我的开发效率，也让开发变得更加简单，基于此，研究学习其源码也是有必要的。
 
-本来是想直接阅读vue的源码，考虑到挑战性是极大的，于是考虑还是从尤大的第一次commit开始学习吧，这样也能够了解到vue的历史。
+本来是想直接阅读vue稳定项目的源码，考虑到挑战性是极大的，于是考虑还是从尤大的第一次commit开始学习吧，这样也能够了解到vue的历史。
 
 尤大的第一次提交实现的功能就是将插值表达式 `{{msg}}`里的内容，转化为在实例中绑定的数据。
 
@@ -16,11 +16,11 @@ vue让我专注于业务，提升了我的开发效率，也让开发变得更�
 ##### 通过阅读，可以看出作者第一次的思路如下：
 
 
-1.初始化实例，绑定给实例 el（根元素）、 data({})。
-2.匹配到 `{{variable}}` 将其替换为带有标记的 `<span mark = variable></span>` 标签，并将`{{variable}}`中的variable值存到一个对象中去`bindings = { variable1: {}, variable2: {}, ...} ` 。
-3.通过对bindings的遍历中`{{variable}}`的值进行`bind(variable)`处理。
-4.bind()方法的作用一个是移除span的mark标签，另一个作用是通过`Object.defineProperty`将variable定义为`data = {}`的属性，并定义其 `set()` 和 `get()` 方法。
-5.初始化实例中的数据，这时就开始执行`set()和get()`方法了。
+1.初始化实例，绑定给实例 el（根元素）、 data({})。  
+2.匹配到 `{{variable}}` 将其替换为带有标记的 `<span mark = variable></span>` 标签，并将`{{variable}}`中的variable值存到一个对象中去`bindings = { variable1: {}, variable2: {}, ...} ` 。  
+3.通过对bindings的遍历中`{{variable}}`的值进行`bind(variable)`处理。  
+4.bind()方法的作用一个是移除span的mark标签，另一个作用是通过`Object.defineProperty`将variable定义为`data = {}`的属性，并定义其 `set()` 和 `get()` 方法。  
+5.初始化实例中的数据，这时就开始执行`set()和get()`方法了。  
 
 ##### 代码的执行顺序如下：
 
