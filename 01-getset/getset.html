@@ -14,8 +14,10 @@
     </div>
     <script type="text/javascript">
     debugger;
+      // 添加标记
       var bindingMark = 'data-element-binding'
       function Element (id, initData) {
+
         var self = this,
           el = self.el = document.getElementById(id)
           bindings = {}
@@ -37,7 +39,7 @@
 
           // 做标记： 1. {{}} 替换为该 dom; 2. bindings[variable] = {}
           // 第一个参数match，表示与正则表达式匹配的全文本。
-          // 第二个参数match，表示为子表达式匹配的字符串。
+          // 第二个参数variable，表示为子表达式匹配的字符串。
           function markToken (match, variable) {
             bindings[variable] = {}
             return `<span ${bindingMark} = ${variable} ></span>`
