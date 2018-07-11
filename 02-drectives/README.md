@@ -7,7 +7,9 @@
 
 尤大的第二次提交实现的是对指令的解析，指令的解析本质就是对dom节点的attributes的解析，将解析的内容进行必要的绑定，达到目的。
 
-由于在跑尤大的源码时，报错，据说是版本的问题，不得不，自己将源码copy出来，使用webpack跑起来。
+由于在跑尤大的源码时，报错
+`Fatal error: failed to lookup "seed"'s dependency "component-emitter"`
+据说是版本的问题，不得不，自己将源码copy出来，使用webpack跑起来。
 
 尤大的提交地址：[yyx990803 committed on 29 Jul 2013](https://github.com/vuejs/vue/commit/a5e27b1174e9196dcc9dbb0becc487275ea2e84c)
 

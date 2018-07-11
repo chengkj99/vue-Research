@@ -2,7 +2,7 @@ var prefix = 'sd'
 
 import Directives from './directives.js'
 import Filters from './filters.js'
-// debugger;
+debugger;
 var selector = Object.keys(Directives).map( d => {
   return `[${prefix}-${d}]`
 }).join()
